@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>CouchbaseNetClient</id>
+    <version>1.3.4</version>
+    <authors>Couchbase,  Inc.</authors>
+    <owners>Couchbase,  Inc.</owners>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>https://github.com/couchbase/couchbase-net-client</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Couchbase client library for .NET based languages.</description>
+    <releaseNotes>Release Notes for Couchbase Client Library .NET 1.3.4 GA (4 March 2014)
+•	NCBC-261: Use an enumeration instead of integers for return codes
+This patch adds a extension method to Enyim.Caching.StatusCodeExtensions to make it easier to work with the IOperationResult.Status property.
+•	NCBC-408: Retry Node Check during View Operations
+During a View operation, the client will look for a node to use to execute the operation against. In certain cases (rebalance, etc) the list of nodes may be empty. This will add an additional check if a candidate node is not found before the client gives up and returns a "View {0} was mapped to a dead node, failing." error.
+•	NCBC-407: Retry View Operations When Specific Error Cases are Encountered
+This patch enables the client to retry view operation when specific error cases are encountered. For example, all errors in the 300 range are retried and in certain cases 404 and 500's are retried as well.
+•	NCBC-398: Support Json.NET &gt;= 6.0.1
+This commit removes restriction on Json.NET version and bumps the build version from Nuget Version 4.5.11 to 5.0.8 (assembly versions are slightly different). 5.0.8 is the last released version before 6.0.1.
+•	NCBC-388: Test case improvement
+This commit first adds a key and then verify that Store() should fail if we try to add it again.
+•	NCBC-394: Add 'Warn' Level Logging to 'core' configuration classes
+Serializes the client configuration and writes it to the log appender when log level is set to INFO.
+•	NCBC-396: Log the creation of client instances
+This commit logs the creation of a client instance, writing the current configuration to the log when log level INFO is configured. The purpose is to nake it easier to isolate issues specific to a client's configuration.
+•	NCBC-395: Assign each client instance an identifer
+This commit adds an Identity property to the CouchbaseClient class which makes it easier to isolate a specific client's log messages in environments where multiple clients are writing to the same log file.</releaseNotes>
+    <tags>Couchbase nosql</tags>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" />
+    </dependencies>
+  </metadata>
+</package>
